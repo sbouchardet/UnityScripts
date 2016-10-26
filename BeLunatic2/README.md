@@ -6,14 +6,14 @@
 
 ----
 1. **Enemy** </br>
-Definimos que os Inimigos basicos do personagem principal tem dois principais comportamentos: *atacar* e *fugir*. </br>
+Definimos que os Inimigos básicos do personagem principal tem dois principais comportamentos: *atacar* e *fugir*. </br>
 <u>Qualquer herdeiro da classe _Enemy_ tem os seguintes atributos:</u>
 
   * Action Range </br>
   Distância entre o <u>Player</u> e o <u>Inimigo</u> que ativa a ação do Inimigo.
 
   * Action Vel  </br>
-  Velociadade relativa da ação.
+  Velocidade relativa da ação.
 
   * Walk Vel </br>
   Velocidade de movimento do inimigo pelos pontos de referência.
@@ -24,7 +24,7 @@ Definimos que os Inimigos basicos do personagem principal tem dois principais co
   * Points To Walk </br>
   Pontos de referência. É uma lista de GameObject sem colisão que marcam pontos por onde o inimigo deve caminhar. Eles devem ser adicionados na ordem em que serão percorridos.
 
-  Além desses atributos a classe é abstrada e todo herdeiro deve implementar os seguintes métodos:
+  Além desses atributos a classe é abstrata e todo herdeiro deve implementar os seguintes métodos:
 
   - _bool IsActionTime (GameObject Player)_ </br>
   A partir da posição do player relativa ao inimigo, deve conter o seguinte retorno:
@@ -34,11 +34,11 @@ Definimos que os Inimigos basicos do personagem principal tem dois principais co
   - _void Action (GameObject Player)_ </br>
   A ação o inimigo deve tomar quando o método IsActionTime(Player) estiver retornando verdadeiro.
 
-  Os hesdeiros dessa classe são **EnemyAttack** e **EnemyRunaway**.
+  Os herdeiros dessa classe são **EnemyAttack** e **EnemyRunaway**.
 
 2. **Abduction** </br>
 Esse componente deve ser associado ao player, e trata da abdução de inimigos.
->! O inimigo deve estar tageado como `enemy`, se não não será abduzido ! 
+>! O inimigo deve estar tageado como `enemy`, se não não será abduzido !
  </br>
 
  <u>Esse componente tem os seguintes atributos:</u>
@@ -56,9 +56,9 @@ Esse componente deve ser associado ao player, e trata da abdução de inimigos.
   Tamanho mínimo que o inimigo atinge durante a abdução.
 
   - Abduction Laser </br>
-  GameObject referente ao Laser de Abdução. O Laser deve estar direcionado como de estivece abduzindo do eixo `Z` para origem.
+  GameObject referente ao Laser de Abdução. O Laser deve estar direcionado como de estivesse abduzindo do eixo `Z` para origem.
 
-  > **Dica**: Se não for possivel posicionar naturalmente o GameObject do Laser, o mais fácio é:
+  > **Dica**: Se não for possível posicionar naturalmente o GameObject do Laser, o mais fácil é:
 
   > * criar um <u>GameObject vazio</u>;
 
