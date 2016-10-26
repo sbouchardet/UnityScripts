@@ -37,8 +37,11 @@ Definimos que os Inimigos basicos do personagem principal tem dois principais co
   Os hesdeiros dessa classe são **EnemyAttack** e **EnemyRunaway**.
 
 2. **Abduction** </br>
-Esse componente deve ser associado ao player, e trata da abdução de inimigos. </br>
-<u>Esse componente tem os seguintes atributos:</u>
+Esse componente deve ser associado ao player, e trata da abdução de inimigos.
+>! O inimigo deve estar tageado como `enemy`, se não não será abduzido ! 
+ </br>
+
+ <u>Esse componente tem os seguintes atributos:</u>
 
   - Abduction Vel </br>
   Velocidade de abdução total.
