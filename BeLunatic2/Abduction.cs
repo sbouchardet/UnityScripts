@@ -16,8 +16,11 @@ public class Abduction : MonoBehaviour {
 	private float startDistance;
 	private GameObject laser = null;
 
+	private LevelConfig lc;
+
 
 	void Start () {
+		lc = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<LevelConfig> ();
 		r = GetComponent<Renderer> ();
 		enemyOnRay = null;
 	}
@@ -91,6 +94,7 @@ public class Abduction : MonoBehaviour {
 		r.material.color= new Color(r.material.color.r, r.material.color.g, r.material.color.b,alpha);
 
 		if (alpha < -0.5f) {
+			lc.UpdateListOfDemands (obj.name);
 			Destroy (obj);
 			enemyOnRay = null;
 		}
