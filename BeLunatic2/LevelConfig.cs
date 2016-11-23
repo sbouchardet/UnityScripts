@@ -36,8 +36,9 @@ public class LevelConfig : MonoBehaviour {
 
 	//FIXME: need refactoring!
 
-	public List<Demand> ListOfDemands = new List<Demand> ();
 
+	public GameObject StartPoint;
+	public List<Demand> ListOfDemands = new List<Demand> ();
 
 	public Font NumberFont;
 	public Color ColorNumber = new Color(1,1,1,1);
@@ -61,8 +62,8 @@ public class LevelConfig : MonoBehaviour {
 			GUI.skin.font = NumberFont;
 			GUI.color = ColorNumber;
 			GUI.Label(new Rect((Screen.width)*(3.75f/4f), 10, Screen.width, 40), a.Amount.ToString(),guiStyle);
-		}
 
+		}
 
 	}
 		
@@ -70,6 +71,12 @@ public class LevelConfig : MonoBehaviour {
 		ListOfDemands [ListOfDemands.IndexOf (new Demand (name))].Amount -= 1;
 	}
 
+	public void respawn(){
+		transform.position =new Vector3(StartPoint.transform.position.x,
+			StartPoint.transform.position.y+5,
+			StartPoint.transform.position.z);
+
+	}
 
 
 }

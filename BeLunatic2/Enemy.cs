@@ -4,15 +4,14 @@ using System.Collections.Generic;
 
 
 public abstract class Enemy : MonoBehaviour {
-	public int ActionRange;
-	public float ActionVel;
 	public float WalkVel;
 	public float RotateVel;
 	public List<GameObject> PointsToWalk;
+	public int ActionRange;
 
-	private GameObject player;
+	protected GameObject player;
 	private GameObject objTarget;
-	private CharacterController cc;
+	protected CharacterController cc;
 	// Use this for initialization
 	void Start () {
 		player = GameObject.FindGameObjectWithTag ("Player");
@@ -23,14 +22,15 @@ public abstract class Enemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (IsActionTime (player))
-			Action (player);
-		else
+		if (IsActionTime ()) {
+
+			Action ();
+		} else {
 			Walk ();
+	}
 	}
 
 	public void Walk (){
-			
 		if (Vector3.Distance (objTarget.transform.position, transform.position)<=4) {
 			int PointsLength = PointsToWalk.Count;
 			int TargetIndex = PointsToWalk.IndexOf (objTarget);
@@ -52,8 +52,10 @@ public abstract class Enemy : MonoBehaviour {
 
 
 
-	public abstract bool IsActionTime (GameObject obj);
-	public abstract void Action (GameObject obj);
+
+	public abstract bool IsActionTime();
+
+	public abstract void Action ();
 
 
 }

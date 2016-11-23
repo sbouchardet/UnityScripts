@@ -10,7 +10,6 @@ public class Abduction : MonoBehaviour {
 	public GameObject AbductionLaser;
 
 	private Renderer r ;
-	private float opacity = 1f;
 	private GameObject enemyOnRay;
 	private Vector3 startScale;
 	private float startDistance;
@@ -20,7 +19,7 @@ public class Abduction : MonoBehaviour {
 
 
 	void Start () {
-		lc = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<LevelConfig> ();
+		lc = GetComponent<LevelConfig> ();
 		r = GetComponent<Renderer> ();
 		enemyOnRay = null;
 	}
@@ -42,6 +41,10 @@ public class Abduction : MonoBehaviour {
 
 	}
 
+	public GameObject getEnemyOnRay(){
+		return enemyOnRay;
+	}
+
 	private void abduction(){
 		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 		RaycastHit hit;
@@ -53,7 +56,6 @@ public class Abduction : MonoBehaviour {
 		
 	private void ChangeEnemyOnRay(GameObject objOnRay = null){
 		if (enemyOnRay != null) {
-			Renderer r = enemyOnRay.GetComponentInChildren<Renderer> ();
 			r.material.color = new Color (r.material.color.r, r.material.color.g, r.material.color.b, 1);
 			enemyOnRay.transform.localScale = startScale;
 
