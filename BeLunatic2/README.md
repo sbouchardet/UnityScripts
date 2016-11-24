@@ -34,10 +34,32 @@ Definimos que os Inimigos básicos do personagem principal tem dois principais c
   - _void Action (GameObject Player)_ </br>
   A ação o inimigo deve tomar quando o método IsActionTime(Player) estiver retornando verdadeiro.
 
-  Os herdeiros dessa classe são **EnemyAttack** e **EnemyRunaway**.
+  Os herdeiros dessa classe são **EnemyAttack**, **EnemyRunaway** e **EnemyIdle**.
 
-2. **Abduction** </br>
-Esse componente deve ser associado ao player, e trata da abdução de inimigos.
+  1. **EnemyAttack**
+
+    * _dashVel_ </br> velocidade de corrida no momento do ataque;
+
+    * _dashRotate_ </br> velocidade de rotação no momento da perseguição.
+
+    * _SecondsBetweenDamages_ </br> tempo em segundos entre o dano causado pelo inimigo quando o player esta no _damageRange_.
+
+    * _damageCoins_ </br> quantidade de moedas no que o player perde por dano desse inimigo.
+
+    * _damageRange_ </br> range em que o inimigo consegue atacar.
+
+  2. **EnemyRunaway**
+    * _dashVel_ </br> velocidade de corrida no momento da fulga;
+
+    * _dashRotate_ </br> velocidade de rotação no momento da fulga.
+
+  3. **EnemyIdle**
+
+    Como esse tipo de inimigo não reage a presença do player, então não possui atributos próprios.
+
+2. **Abduction**
+
+  Esse componente deve ser associado ao player, e trata da abdução de inimigos.
 >! O inimigo deve estar tageado como `enemy`, se não não será abduzido !
  </br>
 
@@ -67,3 +89,9 @@ Esse componente deve ser associado ao player, e trata da abdução de inimigos.
   >* Então colocar o Laser como *filho* do <u>novo GameObject</u>.
 
   >* Associar ao Atributo Abduction Laser o <u>novo GameObject</u>.
+
+3. **LevelConfig**
+
+4. ** DeadZone **
+
+5. ** PlayerStatus **

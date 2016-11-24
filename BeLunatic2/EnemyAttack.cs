@@ -5,9 +5,8 @@ public class EnemyAttack : Enemy {
 	public float dashVel = 500f;
 	public float dashRotate = 1f;
 	public float SecondsBetweenDamages = 1f;
-	public int damageCoins = 10;	
+	public int damageCoins = 10;
 
-	public float rangeStartAttack = 10f;
 	public float damageRange = 2f;
 
 	private float seconds=0;
@@ -21,7 +20,7 @@ public class EnemyAttack : Enemy {
 
 
 	public override void Action(){
-		
+
 		Vector3 targetDir = player.transform.position - transform.position;
 		Vector3 newDir = Vector3.RotateTowards(transform.forward,
 			targetDir, dashRotate*Time.deltaTime, 0.0f);
