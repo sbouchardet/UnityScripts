@@ -92,6 +92,16 @@ Definimos que os Inimigos básicos do personagem principal tem dois principais c
 
 3. **LevelConfig**
 
+  O LevelConfig é o componente de configuração da fase. Seus atributos são:
+    * _StartPoint_ </br> GameObject que repesenta o ponto inicial da fase. É usado para definis o local de renacimento do _Player_.
+
+    * _ListOfDemands_
+        * _Size_: tamanho da lista de demandas.
+        * _Demands_: Cada demanda da lista é um par de informações:
+          - Nome do GameObject: nome do objeto que deve ser abduzido como demanda para vitória.
+          - Quantidade: quantidade do objeto que deve ser abduzido como demanda para vitória.
 4. ** DeadZone **
 
-5. ** PlayerStatus **
+  Área em que quando o personagem entra ele morre. Deve ser um GameObject tranperente, dentro dos buracos e Água da fase. O componente BoxColider deve ser configurado como na imagem abaixo.
+  ![alt tag](https://raw.githubusercontent.com/sbouchardet/UnityScripts/master/BeLunatic2/boxColider_deadZone.jpg)
+5.  ** PlayerStatus **
