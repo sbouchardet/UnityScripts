@@ -110,5 +110,7 @@ Definimos que os Inimigos básicos do personagem principal tem dois principais c
 
   Componente que gerencia a vida e as moedas do Player ao longo da fase. Seus atributos são:
   * _StartLife_ </br> quantidade de vidas no início da fase.
+
 	* _StartCoins_ </br> quantidade de moedas no início da fase.
+  
 	* _AmountCoinsToNewLife_ </br> quantidade de moedas que devem ser coletadas para se transformarem em uma nova vida.
