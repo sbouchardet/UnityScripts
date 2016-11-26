@@ -100,8 +100,15 @@ Definimos que os Inimigos básicos do personagem principal tem dois principais c
         * _Demands_: Cada demanda da lista é um par de informações:
           - Nome do GameObject: nome do objeto que deve ser abduzido como demanda para vitória.
           - Quantidade: quantidade do objeto que deve ser abduzido como demanda para vitória.
-4. ** DeadZone **
+4. **DeadZone**
 
   Área em que quando o personagem entra ele morre. Deve ser um GameObject tranperente, dentro dos buracos e Água da fase. O componente BoxColider deve ser configurado como na imagem abaixo.
-  ![alt tag](https://raw.githubusercontent.com/sbouchardet/UnityScripts/master/BeLunatic2/boxColider_deadZone.jpg)
-5.  ** PlayerStatus **
+
+  ![alt tag](https://raw.githubusercontent.com/sbouchardet/UnityScripts/master/BeLunatic2/boxColider_deadZone.png)
+
+5.  **PlayerStatus**
+
+  Componente que gerencia a vida e as moedas do Player ao longo da fase. Seus atributos são:
+  * _StartLife_ </br> quantidade de vidas no início da fase.
+	* _StartCoins_ </br> quantidade de moedas no início da fase.
+	* _AmountCoinsToNewLife_ </br> quantidade de moedas que devem ser coletadas para se transformarem em uma nova vida.
