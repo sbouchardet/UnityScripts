@@ -6,6 +6,7 @@ using System;
 
 [System.Serializable]
 public class Demand{
+	public GameObject contador;
 	public string Enemy;
 	public int Amount;
 
@@ -39,36 +40,48 @@ public class LevelConfig : MonoBehaviour {
 
 	public GameObject StartPoint;
 	public List<Demand> ListOfDemands = new List<Demand> ();
+	public float timeInSeconds;
+	public GameObject TimeCount;
 
 	public Font NumberFont;
 	public Color ColorNumber = new Color(1,1,1,1);
 	public Font LetterFont;
 	public Color ColorLetter = new Color(1,1,1,1);
 	public int FontSize = 20;
+	private float timeNow;
 
-	private GUIStyle guiStyle = new GUIStyle();
+	void Start(){
+		timeNow = timeInSeconds;
+		for (int i = 0; i < ListOfDemands.Count; i++) {
+			UpdateTextCanvas (ListOfDemands[i]);
+		}
+	}
 
-
+	void Update(){
+		timeNow -= Time.deltaTime;
+		if (Lose ()) {
 			
-
-
-	void OnGUI(){
-
-		guiStyle.fontSize = FontSize;
-		foreach (Demand a in ListOfDemands){	
-			GUI.skin.font = LetterFont;
-			GUI.color = ColorLetter;
-			GUI.Label(new Rect((Screen.width)*(3f/4f), 10, Screen.width*(3.75f/4f), 40), a.Enemy+":",guiStyle);
-			GUI.skin.font = NumberFont;
-			GUI.color = ColorNumber;
-			GUI.Label(new Rect((Screen.width)*(3.75f/4f), 10, Screen.width, 40), a.Amount.ToString(),guiStyle);
+			Debug.Log ("Derrota!");
+		} else {
+			UpdateTextTime (timeNow);
 
 		}
-
+		
 	}
+
 		
 	public void UpdateListOfDemands(string name){
-		ListOfDemands [ListOfDemands.IndexOf (new Demand (name))].Amount -= 1;
+		if (ListOfDemands.IndexOf (new Demand (name)) > -1) {
+			Demand d = ListOfDemands [ListOfDemands.IndexOf (new Demand (name))];
+			d.Amount -= 1;
+			UpdateTextCanvas (d);
+
+			if (Win ()) {
+				GameManager gm = GameObject.FindGameObjectWithTag ("GameManager").GetComponent<GameManager> ();
+				gm.loadNextLevel ();
+			}
+		}
+
 	}
 
 	public void respawn(){
@@ -76,6 +89,41 @@ public class LevelConfig : MonoBehaviour {
 			StartPoint.transform.position.y+5,
 			StartPoint.transform.position.z);
 
+	}
+
+	private void UpdateTextCanvas (Demand d){
+		GameObject txtCanvas = d.contador;
+		Text txt = txtCanvas.GetComponent<Text> ();
+		txt.text = d.Amount+"";
+	}
+
+	private void UpdateTextTime(float t){
+		Text txtTime = TimeCount.GetComponent<Text>();
+		txtTime.text = converSeconds (t);
+	}
+
+	private string converSeconds(float t){
+		int min = 0;
+		int sec = 0;
+		float tNow = t;
+		while (tNow / 60 > 1) {
+			min += 1;
+			tNow -= 60;
+		}
+		sec = (int)tNow;
+		return min + ":" + sec;
+	}
+
+	private bool Win(){
+		bool result = true;
+		for (int i = 0; i < ListOfDemands.Count; i++) {
+			result = result && ListOfDemands [i].Amount == 0;
+		}
+		return result;
+	}
+
+	private bool Lose(){
+		return timeNow <= 0;
 	}
 
 
