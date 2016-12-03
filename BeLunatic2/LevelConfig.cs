@@ -49,8 +49,10 @@ public class LevelConfig : MonoBehaviour {
 	public Color ColorLetter = new Color(1,1,1,1);
 	public int FontSize = 20;
 	private float timeNow;
+	private bool pause;
 
 	void Start(){
+		pause = false;
 		timeNow = timeInSeconds;
 		for (int i = 0; i < ListOfDemands.Count; i++) {
 			UpdateTextCanvas (ListOfDemands[i]);
@@ -58,10 +60,12 @@ public class LevelConfig : MonoBehaviour {
 	}
 
 	void Update(){
+		if(!pause)
 		timeNow -= Time.deltaTime;
 		if (Lose ()) {
-			
-			Debug.Log ("Derrota!");
+			GameManager gm = GameObject.FindGameObjectWithTag ("GameManager").GetComponent<GameManager> ();
+			gm.ShowGameOver ();
+
 		} else {
 			UpdateTextTime (timeNow);
 
@@ -88,6 +92,8 @@ public class LevelConfig : MonoBehaviour {
 		transform.position =new Vector3(StartPoint.transform.position.x,
 			StartPoint.transform.position.y+5,
 			StartPoint.transform.position.z);
+			timeNow = timeInSeconds;
+		
 
 	}
 
@@ -123,8 +129,19 @@ public class LevelConfig : MonoBehaviour {
 	}
 
 	private bool Lose(){
-		return timeNow <= 0;
+		PlayerStatus ps = GetComponent<PlayerStatus> ();
+		return timeNow <= 0 || ps.getLife()<=0;
+
 	}
 
+	public void pauseTheGame(){
+		this.pause = true;
+	}
+	public void unpauseTheGame(){
+		this.pause = false;
+	}
 
+	public bool getPauseState(){
+		return this.pause;
+	}
 }

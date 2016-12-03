@@ -15,15 +15,18 @@ public class PlayerStatus : MonoBehaviour {
 	private int Life;
 	private int Coins;
 
+	private GameObject gom;
+	GameManager gm;
+
 	void Start(){
-		GameObject gom = GameObject.FindGameObjectWithTag ("GameManager");
-		GameManager gm = gom.GetComponent<GameManager> ();
+		gom = GameObject.FindGameObjectWithTag ("GameManager");
+		gm = gom.GetComponent<GameManager> ();
 		if (StartLife == -1)
-			setLife (gm.Lifes);
+			setLife (gm.getLife());
 		else
 			setLife (StartLife);
 		if (StartCoins == -1)
-			setCoins (gm.Coins);
+			setCoins (gm.getCoins());
 		else
 			setCoins (StartCoins);
 	}
@@ -34,6 +37,8 @@ public class PlayerStatus : MonoBehaviour {
 
 	public void setLife(int l){
 		CountLife.GetComponent<Text> ().text = l.ToString();
+		gm.setLife(getLife());
+
 		this.Life = l;
 	}
 
@@ -47,7 +52,9 @@ public class PlayerStatus : MonoBehaviour {
 
 	public void setCoins(int c){
 		CountCoins.GetComponent<Text> ().text = c.ToString();
+		gm.setCoins(getCoins ());
 		this.Coins = c;
+
 	}
 
 	public void increaseCoins(int c){
@@ -62,11 +69,6 @@ public class PlayerStatus : MonoBehaviour {
 		}
 	}
 
-	void OnApplicationQuit(){
-		GameObject gom = GameObject.FindGameObjectWithTag ("GameManager");
-		GameManager gm = gom.GetComponent<GameManager> ();
-		gm.Lifes = getLife ();
-		gm.Coins = getCoins ();
-	}
+
 		
 }

@@ -28,7 +28,6 @@ public abstract class WalkOnPoints: MonoBehaviour {
 			int TargetIndex = PointsToWalk.IndexOf (objTarget);
 			int NewTargetIndex = PointsLength == TargetIndex + 1 && loop ? 0 : TargetIndex + 1;
 			objTarget = NewTargetIndex >=PointsLength ? null:PointsToWalk [NewTargetIndex];
-			Debug.Log (NewTargetIndex);
 
 		} else {
 				Vector3 targetDir = objTarget.transform.position - transform.position;
