@@ -33,7 +33,6 @@ public class EnemyAttack : Enemy {
 			seconds += Time.deltaTime;
 			if (seconds > SecondsBetweenDamages ) {
 				hit ();
-				StartCoroutine ("Blink");
 				hitAnimation ();
 				seconds = 0;
 			}
@@ -53,20 +52,7 @@ public class EnemyAttack : Enemy {
 	protected virtual void hitAnimation(){
 	
 	}
-
-	protected IEnumerator Blink(){
-		player.GetComponent<Renderer> ().enabled = false;
-		yield return new WaitForSeconds (0.1f);
-		player.GetComponent<Renderer> ().enabled = true;
-		yield return new WaitForSeconds (0.1f);
-		player.GetComponent<Renderer> ().enabled = false;
-		yield return new WaitForSeconds (0.1f);
-		player.GetComponent<Renderer> ().enabled = true;
-		yield return new WaitForSeconds (0.1f);
-		player.GetComponent<Renderer> ().enabled = false;
-		yield return new WaitForSeconds (0.1f);
-		player.GetComponent<Renderer> ().enabled = true;
-	}
+		
 
 
 
