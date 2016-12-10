@@ -16,7 +16,7 @@ public class PlayerAttack : MonoBehaviour {
 	void Start () {
 		isAlive = true;
 		Enemy = GameObject.FindGameObjectWithTag ("enemy");
-		CountEnergy.text = Energy.ToString ();
+		this.setEnergy (Energy);
 	}
 	
 	void Update () {
@@ -45,7 +45,7 @@ public class PlayerAttack : MonoBehaviour {
 	}
 
 	public void setEnergy(int e){
-		if(e>=0)
+		if(e>0)
 			CountEnergy.text = e.ToString ();
 		if (e <= 0) {
 			CountEnergy.text = "0";
@@ -57,7 +57,7 @@ public class PlayerAttack : MonoBehaviour {
 	private void Dead(){
 		Debug.Log ("YOU LOSE");
 		GameManager gm = GameObject.FindGameObjectWithTag ("GameManager").GetComponent<GameManager>();
-		gm.loadFirstLevel ();
+		gm.ShowGameOver ();
 	}
 		
 }
